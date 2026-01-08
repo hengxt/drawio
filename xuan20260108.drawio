@@ -1,0 +1,111 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.2.10">
+  <diagram name="第 1 页" id="gA5ZXQhv60bVolQBh3kv">
+    <mxGraphModel dx="770" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c4w9LWQd-SmaENvYCvde-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" value="Machine Learning-Driven WQI Modeling Framework" vertex="1">
+          <mxGeometry height="30" width="400" x="200" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" value="Groundwater Sampling&#xa;(Nanning Basin, n=820)" vertex="1">
+          <mxGeometry height="60" width="200" x="300" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=10;" value="Indicator Selection &amp; Preprocessing&#xa;(pH, TDS, NO3-, NH4+, Fe, Mn, etc.)" vertex="1">
+          <mxGeometry height="50" width="240" x="280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-4" parent="1" style="swimlane;html=1;startSize=20;horizontal=1;childLayout=none;fillColor=#dae8fc;strokeColor=#6c8ebf;collapsible=0;rounded=1;" value="Weight Determination Strategy" vertex="1">
+          <mxGeometry height="140" width="520" x="140" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-5" parent="c4w9LWQd-SmaENvYCvde-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Subjective Weights&#xa;(AHP)" vertex="1">
+          <mxGeometry height="40" width="120" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-6" parent="c4w9LWQd-SmaENvYCvde-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Objective Weights&#xa;(ML: RF, GBDT, Xgboost)" vertex="1">
+          <mxGeometry height="40" width="140" x="350" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-7" parent="c4w9LWQd-SmaENvYCvde-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" value="Combined Weights Calculation&#xa;(Matrix Method)" vertex="1">
+          <mxGeometry height="40" width="200" x="160" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-8" edge="1" parent="c4w9LWQd-SmaENvYCvde-4" source="c4w9LWQd-SmaENvYCvde-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="c4w9LWQd-SmaENvYCvde-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-9" edge="1" parent="c4w9LWQd-SmaENvYCvde-4" source="c4w9LWQd-SmaENvYCvde-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="c4w9LWQd-SmaENvYCvde-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="WQI Model Construction&#xa;Aggregation Functions: NSF, WQM, LQM, SWM" vertex="1">
+          <mxGeometry height="60" width="300" x="250" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Model Validation&#xa;(Overlapping Analysis)" vertex="1">
+          <mxGeometry height="60" width="140" x="600" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;strokeWidth=2" value="Optimal WQI Model Selection&#xa;(SWM-wAR)" vertex="1">
+          <mxGeometry height="50" width="240" x="280" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-13" parent="1" style="swimlane;html=1;startSize=20;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" value="WQImin Model Optimization (Key Parameter Selection)" vertex="1">
+          <mxGeometry height="150" width="600" x="100" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-14" parent="c4w9LWQd-SmaENvYCvde-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Feature Importance Ranking&#xa;(RF, GBDT)" vertex="1">
+          <mxGeometry height="40" width="160" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-15" parent="c4w9LWQd-SmaENvYCvde-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="ML Prediction &amp; Comparison&#xa;(RF, LightGBM, Xgboost, GBDT)" vertex="1">
+          <mxGeometry height="40" width="200" x="360" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-16" parent="c4w9LWQd-SmaENvYCvde-13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;strokeWidth=2" value="Optimal WQImin Model Identified&#xa;(GBDT with 5 Key Parameters)" vertex="1">
+          <mxGeometry height="40" width="240" x="180" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-17" edge="1" parent="c4w9LWQd-SmaENvYCvde-13" source="c4w9LWQd-SmaENvYCvde-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c4w9LWQd-SmaENvYCvde-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-18" edge="1" parent="c4w9LWQd-SmaENvYCvde-13" source="c4w9LWQd-SmaENvYCvde-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="90" />
+              <mxPoint x="300" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Spatial Distribution &amp; Classification&#xa;(IDW Interpolation)" vertex="1">
+          <mxGeometry height="50" width="240" x="280" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-20" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" value="Groundwater Management&#xa;Strategies &amp; Policy" vertex="1">
+          <mxGeometry height="60" width="200" x="300" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-21" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="c4w9LWQd-SmaENvYCvde-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-22" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-23" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-24" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="c4w9LWQd-SmaENvYCvde-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-25" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-26" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-27" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-28" edge="1" parent="1" source="c4w9LWQd-SmaENvYCvde-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="c4w9LWQd-SmaENvYCvde-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-29" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="Legend" vertex="1">
+          <mxGeometry height="100" width="160" x="620" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-30" parent="c4w9LWQd-SmaENvYCvde-29" style="text;strokeColor=none;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="Data Collection" vertex="1">
+          <mxGeometry height="26" width="160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-31" parent="c4w9LWQd-SmaENvYCvde-29" style="text;strokeColor=none;fillColor=#d5e8d4;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="Modeling &amp; Opt" vertex="1">
+          <mxGeometry height="26" width="160" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c4w9LWQd-SmaENvYCvde-32" parent="c4w9LWQd-SmaENvYCvde-29" style="text;strokeColor=none;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="Results &amp; Risk" vertex="1">
+          <mxGeometry height="28" width="160" y="72" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
