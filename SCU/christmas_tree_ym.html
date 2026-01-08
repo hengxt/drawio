@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Merry Christmas 🎄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #050505; }
+        #text {
+            position: absolute; top: 10%; width: 100%; text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem; font-weight: 400; pointer-events: none; z-index: 10;
+            transition: color 0.5s ease;
+        }
+        #ui {
+            position: absolute; bottom: 40px; left: 0; width: 100%;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; z-index: 20;
+        }
+        button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white; padding: 10px 20px; border-radius: 25px; cursor: pointer;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            font-size: 14px; transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        button:active { background: rgba(255, 255, 255, 0.3); transform: scale(0.95); }
+        canvas { display: block; touch-action: none; }
+    </style>
+</head>
+<body>
+    <div id="text">Merry Christmas</div>
+    <div id="ui">
+        <button onclick="changeStyle(1)">经典</button>
+        <button onclick="changeStyle(2)">冰雪</button>
+        <button onclick="changeStyle(4)">彩色</button>
+        <button onclick="changeStyle(5)">黑白</button>
+        <button onclick="changeStyle(6)">粉色</button>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.136.0';
+
+        const STYLES = {
+            1: { bg: '#050505', tree: ['#0f3d0f', '#144514', '#006400', '#2E8B57', '#228B22'], trunk: '#3e2723', decor: ['#FFD700', '#FF0000', '#FFFFFF', '#FFA500'], star: '#FFD700', text: '#FFD700', ribbon: '#D4AF37', snow: '#FFFFFF', ribbon_w: 2.2 },
+            2: { bg: '#0a1014', tree: ['#2F4F4F', '#5F9EA0', '#708090'], trunk: '#404040', decor: ['#E0FFFF', '#FFFFFF', '#B0C4DE'], star: '#E0FFFF', text: '#B0C4DE', ribbon: '#F0FFFF', snow: '#F0FFFF', ribbon_w: 1.5 },
+            4: { bg: '#000000', tree: ['#006400', '#228B22'], trunk: '#4E342E', decor: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'], star: '#FFD700', text: '#FF6347', ribbon: '#C0C0C0', snow: '#FFFFFF', ribbon_w: 1.5 },
+            5: { bg: '#000000', tree: ['#1a1a1a', '#222222', '#333333'], trunk: '#111111', decor: ['#FFFFFF', '#DDDDDD'], star: '#FFFFFF', text: '#FFFFFF', ribbon: '#FFFFFF', snow: '#808080', ribbon_w: 1.2 },
+            6: { bg: '#120508', tree: ['#D87093', '#FF69B4', '#C71585'], trunk: '#5D4037', decor: ['#FFFFFF', '#FFD700', '#FF1493'], star: '#FFD700', text: '#FFC0CB', ribbon: '#FFB6C1', snow: '#FFF0F5', ribbon_w: 1.5 }
+        };
+
+        let scene, camera, renderer, treeGroup, snowSystem;
+        let styleId = 2;
+
+        function init() {
+            const cfg = STYLES[styleId];
+            if (!scene) {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.set(0, 0, 13);
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                document.body.appendChild(renderer.domElement);
+            } else {
+                while(scene.children.length > 0) scene.remove(scene.children[0]);
+            }
+            scene.background = new THREE.Color(cfg.bg);
+            document.getElementById('text').style.color = cfg.text;
+            treeGroup = new THREE.Group();
+            buildTree(cfg);
+            scene.add(treeGroup);
+            buildSnow();
+        }
+
+        function buildTree(cfg) {
+            const pos = [], cols = [], sizes = [];
+            const n_layers = 8, h_pts = [];
+            for(let i=0; i<=n_layers; i++) h_pts.push(-2 + (i/n_layers)*4);
+            const trunkCol = new THREE.Color(cfg.trunk);
+            for(let i=0; i<800; i++) {
+                let th = -2.5 + Math.random(), tr = Math.random()*0.35, tt = Math.random()*Math.PI*2;
+                pos.push(tr*Math.cos(tt), th, tr*Math.sin(tt)); cols.push(trunkCol.r, trunkCol.g, trunkCol.b); sizes.push(0.08);
+            }
+            for(let i=0; i<n_layers; i++) {
+                let h_min = h_pts[i] + 0.04, h_max = h_pts[i+1] - 0.04;
+                let num = (i === n_layers-1) ? 1200 : 800;
+                if(i === n_layers-1) { h_min = h_pts[i]+0.01; h_max = h_pts[n_layers]+0.4; }
+                let max_r = 2.5 * (1.0 - (i/(n_layers-1))*0.85);
+                for(let j=0; j<num; j++) {
+                    let h = h_min + Math.random()*(h_max-h_min), rel = (h-h_min)/(h_max-h_min);
+                    let r = (i === n_layers-1) ? max_r*(1-rel)*Math.sqrt(0.1+0.9*Math.random()) :
+                            max_r*(1-Math.pow(Math.abs(h-(h_min+h_max)/2)/(h_max-h_min)*2,2)*0.3)*Math.sqrt(0.1+0.9*Math.random());
+                    let t = Math.random()*Math.PI*2;
+                    pos.push(r*Math.cos(t), h, r*Math.sin(t));
+                    let c = new THREE.Color((i===n_layers-1 && rel>0.85 && Math.random()<(rel-0.85)/0.15*0.3) ? cfg.star : cfg.tree[Math.floor(Math.random()*cfg.tree.length)]);
+                    cols.push(c.r, c.g, c.b); sizes.push(0.05+Math.random()*0.05);
+                }
+                for(let j=0; j<Math.floor(600/n_layers); j++) {
+                    let h = h_min+0.02+Math.random()*(h_max-h_min-0.04), rel = (h-h_min)/(h_max-h_min);
+                    let rb = (i===n_layers-1)?(1-rel):(1-Math.pow((Math.abs(h-(h_min+h_max)/2)/(h_max-h_min)*2),2)*0.3);
+                    let r = max_r*rb*0.98, t = Math.random()*Math.PI*2;
+                    pos.push(r*Math.cos(t), h, r*Math.sin(t));
+                    let c = new THREE.Color(cfg.decor[Math.floor(Math.random()*cfg.decor.length)]);
+                    cols.push(c.r, c.g, c.b); sizes.push(0.18);
+                }
+                if(cfg.ribbon_w > 0) {
+                    for(let j=0; j<120; j++) {
+                        let h = h_max-(j/120)*(h_max-h_min), t = (j/120)*Math.PI*1.5+(i*Math.PI*0.7), rel = (h-h_min)/(h_max-h_min);
+                        let rb = (i===n_layers-1)?(1-rel):(1-Math.pow((Math.abs(h-(h_min+h_max)/2)/(h_max-h_min)*2),2)*0.3);
+                        pos.push((max_r*rb+0.12)*Math.cos(t), h, (max_r*rb+0.12)*Math.sin(t));
+                        let c = new THREE.Color(cfg.ribbon); cols.push(c.r, c.g, c.b); sizes.push(0.06*cfg.ribbon_w);
+                    }
+                }
+            }
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+            geo.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+            treeGroup.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.1, vertexColors: true, transparent: true, opacity: 0.9, map: getDot(), alphaTest: 0.01 })));
+            const sCol = new THREE.Color(cfg.star), sH = h_pts[n_layers]+0.45;
+            const sM = new THREE.Mesh(new THREE.SphereGeometry(0.18,16,16), new THREE.MeshBasicMaterial({color: sCol}));
+            sM.position.y = sH; treeGroup.add(sM);
+            [1.2, 0.8, 0.5].forEach((s, idx) => {
+                const g = new THREE.Sprite(new THREE.SpriteMaterial({ map: getGlow(), color: sCol, transparent: true, opacity: 0.4-idx*0.1, blending: THREE.AdditiveBlending }));
+                g.position.y = sH; g.scale.set(s, s, s); treeGroup.add(g);
+            });
+        }
+
+        function buildSnow() {
+            const p = []; for(let i=0; i<400; i++) p.push((Math.random()-0.5)*10, Math.random()*8-3, (Math.random()-0.5)*10);
+            const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
+            snowSystem = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.05, map: getDot(), transparent: true, opacity: 0.7 }));
+            scene.add(snowSystem);
+        }
+
+        function getDot() {
+            const cvs = document.createElement('canvas'); cvs.width = 64; cvs.height = 64;
+            const ctx = cvs.getContext('2d'); ctx.beginPath(); ctx.arc(32,32,30,0,Math.PI*2); ctx.fillStyle = 'white'; ctx.fill();
+            const tex = new THREE.Texture(cvs); tex.needsUpdate = true; return tex;
+        }
+
+        function getGlow() {
+            const cvs = document.createElement('canvas'); cvs.width = 64; cvs.height = 64;
+            const ctx = cvs.getContext('2d'); const g = ctx.createRadialGradient(32,32,0,32,32,32);
+            g.addColorStop(0,'white'); g.addColorStop(0.3,'rgba(255,255,255,0.4)'); g.addColorStop(1,'transparent');
+            ctx.fillStyle = g; ctx.fillRect(0,0,64,64);
+            const tex = new THREE.Texture(cvs); tex.needsUpdate = true; return tex;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if(treeGroup) treeGroup.rotation.y += 0.006;
+            if(snowSystem) {
+                const p = snowSystem.geometry.attributes.position.array;
+                for(let i=1; i<p.length; i+=3) { p[i]-=0.02; if(p[i]<-3) p[i]=5; }
+                snowSystem.geometry.attributes.position.needsUpdate = true;
+            }
+            renderer.render(scene, camera);
+        }
+
+        window.changeStyle = (id) => { styleId = id; init(); };
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
