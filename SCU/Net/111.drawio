@@ -1,0 +1,185 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram id="Og2No4nOEecp5rVi-2DS" name="第 1 页">
+    <mxGraphModel dx="770" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" value="Comparison of Covariance Reconstruction Algorithms" vertex="1">
+          <mxGeometry height="40" width="600" x="300" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" value="Input: Sample Covariance R&#xa;Difference Array Transform" vertex="1">
+          <mxGeometry height="50" width="400" x="400" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_ni" parent="1" style="swimlane;html=1;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="NI (Newtonian Identities)" vertex="1">
+          <mxGeometry height="560" width="240" x="40" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ni_1" parent="lane_ni" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Normalize Known r" vertex="1">
+          <mxGeometry height="40" width="200" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ni_2" parent="lane_ni" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Init: Compute Elementary&#xa;Polys (e) via Newton Id." vertex="1">
+          <mxGeometry height="50" width="200" x="20" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ni_3" parent="lane_ni" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Optimization (Least Squares)" vertex="1">
+          <mxGeometry height="60" width="200" x="20" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ni_4" parent="lane_ni" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" value="Constraint: Newton Identities&#xa;(Power Sums &lt;-&gt; Elem Polys)" vertex="1">
+          <mxGeometry height="50" width="180" x="30" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="ni_5" parent="lane_ni" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Output: r_full" vertex="1">
+          <mxGeometry height="40" width="160" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ni_1" edge="1" parent="lane_ni" source="ni_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="ni_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ni_2" edge="1" parent="lane_ni" source="ni_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="ni_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ni_3" edge="1" parent="lane_ni" source="ni_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="ni_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_yw" parent="1" style="swimlane;html=1;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" value="YW (Yule-Walker Family)" vertex="1">
+          <mxGeometry height="560" width="280" x="300" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_1" parent="lane_yw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Init: Solve Linear YW / Fwd-Bwd&#xa;for AR Coeffs (a)" vertex="1">
+          <mxGeometry height="50" width="220" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_opt" parent="lane_yw" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Non-Linear Optimization" vertex="1">
+          <mxGeometry height="60" width="200" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_vars" parent="lane_yw" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;align=left;verticalAlign=top;" value="Variants" vertex="1">
+          <mxGeometry height="140" width="260" x="10" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_v1" parent="lane_yw" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Standard/HYP:&#xa;Opt(a) only" vertex="1">
+          <mxGeometry height="90" width="70" x="20" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_v2" parent="lane_yw" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#fff2cc;" value="Robust (RYW):&#xa;Opt(a) + Soft-L1&#xa;+ |r| Penalty" vertex="1">
+          <mxGeometry height="90" width="80" x="100" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_v3" parent="lane_yw" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#d5e8d4;" value="Joint (JYW):&#xa;Opt(a, r_seed)&#xa;*Best Perf*" vertex="1">
+          <mxGeometry height="90" width="70" x="190" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_core" parent="lane_yw" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" value="Core: AR Extrapolation&#xa;r[n] = -sum(a[i]*r[n-i])" vertex="1">
+          <mxGeometry height="40" width="200" x="40" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="yw_out" parent="lane_yw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Output: r_full" vertex="1">
+          <mxGeometry height="40" width="160" x="60" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e_yw_1" edge="1" parent="lane_yw" source="yw_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="yw_opt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_yw_2" edge="1" parent="lane_yw" source="yw_opt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="yw_vars">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_yw_3" edge="1" parent="lane_yw" source="yw_vars" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="yw_core">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_yw_4" edge="1" parent="lane_yw" source="yw_core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="yw_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_sp" parent="1" style="swimlane;html=1;startSize=30;fillColor=#f8cecc;strokeColor=#b85450;" value="Szegő Recursion (SP)" vertex="1">
+          <mxGeometry height="560" width="240" x="600" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_1" parent="lane_sp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Init: Fwd Levinson-Durbin&#xa;-&gt; Reflection Coeffs (rho)" vertex="1">
+          <mxGeometry height="50" width="200" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_2" parent="lane_sp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Transform: w = arctanh(rho)&#xa;(Constraint |rho| &lt; 1)" vertex="1">
+          <mxGeometry height="50" width="200" x="20" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_3" parent="lane_sp" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Opt: Minimize Error" vertex="1">
+          <mxGeometry height="60" width="200" x="20" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_4" parent="lane_sp" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" value="Core: Inverse Levinson&#xa;(Guarantees PSD)" vertex="1">
+          <mxGeometry height="50" width="180" x="30" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_out" parent="lane_sp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Output: r_full (PSD)" vertex="1">
+          <mxGeometry height="40" width="160" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sp_1" edge="1" parent="lane_sp" source="sp_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="sp_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sp_2" edge="1" parent="lane_sp" source="sp_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="sp_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sp_3" edge="1" parent="lane_sp" source="sp_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="sp_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_h" parent="1" style="swimlane;html=1;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;" value="Hankel Matrix Completion" vertex="1">
+          <mxGeometry height="560" width="280" x="860" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="h_1" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" value="Construct Hankel Matrix H" vertex="1">
+          <mxGeometry height="40" width="200" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h_vars" parent="lane_h" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;" value="Iterative Methods" vertex="1">
+          <mxGeometry height="250" width="240" x="20" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="h_cad" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontStyle=1" value="Cadzow (CHankel)&#xa;*Best Robustness*" vertex="1">
+          <mxGeometry height="50" width="100" x="30" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="h_cad_op" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" value="Hard Threshold&#xa;(SVD Rank-k)" vertex="1">
+          <mxGeometry height="50" width="100" x="30" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="h_cad_av" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;" value="Average&#xa;Anti-diagonals" vertex="1">
+          <mxGeometry height="50" width="100" x="30" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="h_hmc" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" value="Standard HMC" vertex="1">
+          <mxGeometry height="50" width="100" x="150" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="h_hmc_op" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;" value="Soft Threshold&#xa;(SVT, Nuc Norm)" vertex="1">
+          <mxGeometry height="50" width="100" x="150" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="h_hmc_admm" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;" value="ADMM&#xa;Projection" vertex="1">
+          <mxGeometry height="50" width="100" x="150" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="h_comb" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;" value="Data Consistency Check&#xa;(Reset Known Values)" vertex="1">
+          <mxGeometry height="40" width="200" x="40" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="h_out" parent="lane_h" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Output: r_full" vertex="1">
+          <mxGeometry height="40" width="160" x="60" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_1" edge="1" parent="lane_h" source="h_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_vars">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_cad1" edge="1" parent="lane_h" source="h_cad" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_cad_op">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_cad2" edge="1" parent="lane_h" source="h_cad_op" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_cad_av">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_hmc1" edge="1" parent="lane_h" source="h_hmc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_hmc_op">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_hmc2" edge="1" parent="lane_h" source="h_hmc_op" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_hmc_admm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_2" edge="1" parent="lane_h" source="h_vars" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_comb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_h_3" edge="1" parent="lane_h" source="h_comb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="h_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_in_1" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;" target="lane_ni">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="140" />
+              <mxPoint x="160" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_in_2" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.4;exitY=1;" target="lane_yw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_in_3" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.6;exitY=1;" target="lane_sp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_in_4" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;" target="lane_h">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="140" />
+              <mxPoint x="1000" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
