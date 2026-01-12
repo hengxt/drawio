@@ -1,0 +1,148 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram id="1BSLNdjP5L564Dxp9ZNr" name="第 1 页">
+    <mxGraphModel dx="770" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="label_fig1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" value="Figure 1: Flowchart of SHD-SGR Algorithm" vertex="1">
+          <mxGeometry height="30" width="300" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="node_input" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Multichannel Signals P(x, k)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="node_sh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" value="SH Coefficient Extraction (Eq. 8)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="node_norm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" value="Normalization (Eq. 11)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="node_svd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" value="SVD &amp; Rank-1 Approx. (Eq. 12-13)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="node_fusion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" value="Multi-frame Fusion (Eq. 17)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="node_coarse" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" value="Coarse Grid Search (Resolution: Δ = 3°)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="node_fine" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Local Fine-Grid Refinement (Resolution: Δ/K = 0.3°)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="node_output" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Final DOA Estimate (θ, φ)" vertex="1">
+          <mxGeometry height="60" width="200" x="150" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_1" edge="1" parent="1" source="node_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_sh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_2" edge="1" parent="1" source="node_sh" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_norm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_3" edge="1" parent="1" source="node_norm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_svd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_4" edge="1" parent="1" source="node_svd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_fusion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_5" edge="1" parent="1" source="node_fusion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_coarse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_6" edge="1" parent="1" source="node_coarse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_fine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_7" edge="1" parent="1" source="node_fine" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="node_output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label_fig2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" value="Figure 2: Sub-grid Refinement Concept" vertex="1">
+          <mxGeometry height="30" width="400" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="fig2_bg" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8f9fa;strokeColor=#b0b0b0;dashed=1;" value="" vertex="1">
+          <mxGeometry height="300" width="300" x="550" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="point_center" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ff0000;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="695" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="6" width="6" x="645" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="6" width="6" x="745" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="6" width="6" x="697" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="6" width="6" x="697" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="box_coarse" parent="1" style="whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF0000;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="680" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="txt_coarse_est" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="Coarse Estimate" vertex="1">
+          <mxGeometry height="20" width="100" x="650" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="box_fine_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="200" width="200" x="880" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="line_zoom1" edge="1" parent="1" source="box_coarse" style="edgeStyle=none;html=1;endArrow=none;dashed=1;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" target="box_fine_bg" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_zoom2" edge="1" parent="1" source="box_coarse" style="edgeStyle=none;html=1;endArrow=none;dashed=1;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" target="box_fine_bg" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_fine_center" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ff0000;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="975" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_refined" parent="1" style="star;whiteSpace=wrap;html=1;shape=star;fillColor=#00FF00;strokeColor=#006600;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="995" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="txt_fine_est" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;" value="Refined Estimate" vertex="1">
+          <mxGeometry height="20" width="100" x="1015" y="222" as="geometry" />
+        </mxCell>
+        <mxCell id="txt_fine_grid" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;" value="Local Fine Grid (Δ/K)" vertex="1">
+          <mxGeometry height="20" width="100" x="930" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="grid_v_1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="930" y="150" as="sourcePoint" />
+            <mxPoint x="930" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grid_v_2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="980" y="150" as="sourcePoint" />
+            <mxPoint x="980" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grid_v_3" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1030" y="150" as="sourcePoint" />
+            <mxPoint x="1030" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grid_h_1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="880" y="200" as="sourcePoint" />
+            <mxPoint x="1080" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grid_h_2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="880" y="250" as="sourcePoint" />
+            <mxPoint x="1080" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grid_h_3" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#CCCCCC;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="880" y="300" as="sourcePoint" />
+            <mxPoint x="1080" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="stage1_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#d6b656;" value="Stage 1" vertex="1">
+          <mxGeometry height="30" width="60" x="360" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="stage2_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#82b366;" value="Stage 2" vertex="1">
+          <mxGeometry height="30" width="60" x="360" y="625" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
